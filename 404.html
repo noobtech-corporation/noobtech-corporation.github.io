@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>404 — Noobtech Co</title>
 
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('noobtech-theme');
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
@@ -24,6 +35,11 @@
       <a href="index.html">Home</a>
       <a href="info.html">Info</a>
       <a href="careers.html">Careers</a>
+      <button class="theme-toggle" aria-label="Toggle light and dark mode" aria-pressed="false">
+        <span class="theme-toggle-icon sun">☀</span>
+        <span class="theme-toggle-icon moon">☾</span>
+        <span class="theme-toggle-thumb"></span>
+      </button>
       <a class="btn btn-primary btn-small" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply for a Job</a>
     </div>
   </nav>
@@ -40,10 +56,11 @@
 
 <footer class="site-footer">
   <div class="container footer-bottom">
-    <span>© 2026 Noobtech Corporation. A fictional company.</span>
+    <span>© 2026 Noobtech Corporation. All rights reserved.</span>
   </div>
 </footer>
 
 <script src="assets/js/script.js"></script>
+<script src="assets/js/theme.js"></script>
 </body>
 </html>
