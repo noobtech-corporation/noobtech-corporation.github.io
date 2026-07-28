@@ -4,7 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Info — Noobtech Co</title>
-<meta name="description" content="Information about Noobtech Corporation: who we are, what we do, and how to reach us.">
+<meta name="description" content="Information about the Noobtech Corporation: who we are, what we do, and how to reach us.">
+
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('noobtech-theme');
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -25,6 +36,11 @@
       <a href="index.html">Home</a>
       <a href="info.html" aria-current="page">Info</a>
       <a href="careers.html">Careers</a>
+      <button class="theme-toggle" aria-label="Toggle light and dark mode" aria-pressed="false">
+        <span class="theme-toggle-icon sun">☀</span>
+        <span class="theme-toggle-icon moon">☾</span>
+        <span class="theme-toggle-thumb"></span>
+      </button>
       <!-- EDIT ME: DISCORD LINK -->
       <a class="btn btn-primary btn-small" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply for a Job</a>
     </div>
@@ -34,7 +50,7 @@
 <section class="hero" style="padding: 56px 0 48px;">
   <div class="container">
     <span class="eyebrow">Info</span>
-    <h1 style="font-size: clamp(2rem, 4.4vw, 3rem);">About Noobtech Corporation</h1>
+    <h1 style="font-size: clamp(2rem, 4.4vw, 3rem);">About the Noobtech Corporation</h1>
     <p class="lede" style="margin-top: 16px;">Who we are, what we stand for, and answers to common questions.</p>
   </div>
 </section>
@@ -44,33 +60,36 @@
   <div class="container two-col">
     <div>
       <span class="eyebrow">About Us</span>
-      <h2>Our Story</h2>
+      <h2>Our Mandate</h2>
 
       <!--
         =====================================================================
         EDIT ME: MAIN INFO SECTION
         This is placeholder text for your company's "About / Info" copy.
         Replace the paragraphs inside the .panel blocks below with real (or
-        fictional) details about Noobtech Corporation — origin story,
+        fictional) details about the Noobtech Corporation — origin story,
         mission, and values.
         =====================================================================
       -->
       <div class="panel">
         <p>
-          Noobtech Corporation was founded to build products for teams that value
-          reliability over hype. This paragraph is placeholder text — replace it
-          with your company's real story.
+          The Noobtech Corporation is a government-funded organization
+          responsible for the research and containment of anomalous
+          phenomena. Unlike organizations built around destruction, our
+          mandate prioritizes study, understanding, and safe long-term
+          containment.
         </p>
         <p>
-          We work in small, focused teams, and we favor tools that are simple to
-          use and easy to maintain. Replace this paragraph with your own
-          description of how the company operates.
+          We operate a network of research and containment sites staffed by
+          research personnel, field engineers, and specialized response
+          units. This paragraph is placeholder text — replace it with your
+          own description of how the organization is structured.
         </p>
       </div>
 
       <div class="panel">
-        <p><strong>Mission (placeholder):</strong> Build technology that does its job without getting in the way. Edit this line to reflect your company's actual mission statement.</p>
-        <p><strong>Values (placeholder):</strong> Clarity over complexity. Direct communication. Long-term thinking. Replace with your own list — this is here to show the layout.</p>
+        <blockquote>“We operate in darkness so humanity can do the same in the light.”</blockquote>
+        <p><strong>Values (placeholder):</strong> Containment over destruction. Precision over speed. Discretion in all things. Replace with your own list — this is here to show the layout.</p>
       </div>
     </div>
 
@@ -81,15 +100,19 @@
         <div class="fact-list">
           <div>
             <div class="k">Founded</div>
-            <div class="v">2019</div>
+            <div class="v">20██</div>
           </div>
           <div>
             <div class="k">Headquarters</div>
-            <div class="v">Remote-first</div>
+            <div class="v"><span class="redacted">████████</span></div>
           </div>
           <div>
-            <div class="k">Team Size</div>
-            <div class="v">40+ people</div>
+            <div class="k">Personnel</div>
+            <div class="v">6,000+</div>
+          </div>
+          <div>
+            <div class="k">Classification</div>
+            <div class="v">Government-funded</div>
           </div>
           <div>
             <div class="k">Contact</div>
@@ -107,12 +130,20 @@
   <div class="container">
     <span class="eyebrow">FAQ</span>
     <h2>Frequently Asked Questions</h2>
-    <p class="section-lede">Placeholder Q&amp;A — edit the questions and answers below to fit your company.</p>
+    <p class="section-lede">Placeholder Q&amp;A — edit the questions and answers below to fit your organization.</p>
 
     <div>
       <details class="faq">
-        <summary>Is Noobtech Corporation a real company?</summary>
-        <p>No. This is a fictional company site, built for a personal project and hosted for free on GitHub Pages.</p>
+        <summary>Is the Noobtech Corporation a real company?</summary>
+        <p>Yes. The Noobtech Corporation is a government-funded organization currently in operation. Further operational details are not disclosed to the public.</p>
+      </details>
+      <details class="faq">
+        <summary>What is a Hoverblock?</summary>
+        <p>Hoverblocks are a proprietary hovering block platform developed by our engineering division. Additional technical specifications are not publicly disclosed.</p>
+      </details>
+      <details class="faq">
+        <summary>What are the FRF and FEU?</summary>
+        <p>The FRF and FEU are specialized internal divisions. Further information about these units, including what the names stand for, is not available to the public.</p>
       </details>
       <details class="faq">
         <summary>How do I apply for a job?</summary>
@@ -120,11 +151,7 @@
       </details>
       <details class="faq">
         <summary>Do I need prior experience to apply?</summary>
-        <p>Placeholder answer — edit this to fit your world. Requirements vary by role; see the Careers page for details.</p>
-      </details>
-      <details class="faq">
-        <summary>Can I edit this FAQ?</summary>
-        <p>Yes. This block is plain HTML in info.html. Copy a &lt;details class="faq"&gt; element to add a new question.</p>
+        <p>We hire only the most qualified candidates for each role. Requirements vary by division — see the Careers page for details.</p>
       </details>
     </div>
   </div>
@@ -136,7 +163,7 @@
       <img class="brand-mark" src="assets/img/logo.png" alt="Noobtech Co">
       <div>
         <span class="brand-text">Noobtech</span>
-        <p>Noobtech Corporation. A fictional company, built for this site.</p>
+        <p>Noobtech Corporation. Government-funded. Est. 20██.</p>
       </div>
     </div>
     <div class="footer-cols">
@@ -149,16 +176,25 @@
       <div class="footer-col">
         <h4>Elsewhere</h4>
         <a href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Discord</a>
-        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </div>
   <div class="container footer-bottom">
-    <span>© 2026 Noobtech Corporation. A fictional company.</span>
+    <span>© 2026 Noobtech Corporation. All rights reserved.</span>
     <span>Built with HTML and CSS.</span>
   </div>
 </footer>
 
+<div class="cookie-banner" role="dialog" aria-label="Cookie notice">
+  <p>This site uses cookies to remember your preferences, including your light/dark theme selection. See our practices before continuing.</p>
+  <div class="cookie-actions">
+    <button class="btn btn-primary btn-small" data-cookie-accept>Accept</button>
+    <button class="btn btn-outline btn-small" data-cookie-decline>Decline</button>
+  </div>
+</div>
+
 <script src="assets/js/script.js"></script>
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/cookie-consent.js"></script>
 </body>
 </html>
