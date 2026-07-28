@@ -4,7 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Careers — Noobtech Co</title>
-<meta name="description" content="Open roles at Noobtech Corporation. Apply through our Discord server.">
+<meta name="description" content="Open roles at the Noobtech Corporation. Apply through our Discord server.">
+
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('noobtech-theme');
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -25,6 +36,11 @@
       <a href="index.html">Home</a>
       <a href="info.html">Info</a>
       <a href="careers.html" aria-current="page">Careers</a>
+      <button class="theme-toggle" aria-label="Toggle light and dark mode" aria-pressed="false">
+        <span class="theme-toggle-icon sun">☀</span>
+        <span class="theme-toggle-icon moon">☾</span>
+        <span class="theme-toggle-thumb"></span>
+      </button>
       <!-- EDIT ME: DISCORD LINK -->
       <a class="btn btn-primary btn-small" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply for a Job</a>
     </div>
@@ -36,8 +52,9 @@
     <span class="eyebrow">Careers</span>
     <h1 style="font-size: clamp(2rem, 4.4vw, 3rem);">Work at Noobtech</h1>
     <p class="lede" style="margin-top: 16px;">
-      Every application is handled through Discord. No forms, no applicant
-      tracking software — just a direct conversation with the team.
+      The Noobtech Corporation hires only the most qualified candidates in
+      every field we operate in. Every application is handled through
+      Discord — no forms, no applicant tracking software.
     </p>
     <div class="hero-actions" style="margin-top: 28px;">
       <!-- EDIT ME: DISCORD LINK -->
@@ -67,26 +84,72 @@
 
       <div class="job-row">
         <div>
-          <h3>Hardware Engineer</h3>
-          <div class="meta">Full-time · Remote · Hardware</div>
+          <h3>IT Support Specialist</h3>
+          <div class="meta">Full-time · On-site · Operations</div>
         </div>
         <a class="btn btn-outline btn-small" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply</a>
       </div>
 
       <div class="job-row">
         <div>
-          <h3>Community Manager</h3>
-          <div class="meta">Full-time · Remote · Operations</div>
+          <h3>Field Engineer</h3>
+          <div class="meta">Full-time · On-site · Engineering</div>
         </div>
         <a class="btn btn-outline btn-small" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply</a>
       </div>
 
       <div class="job-row">
         <div>
-          <h3>Operations Associate</h3>
-          <div class="meta">Contract · Remote · Operations</div>
+          <h3>Construction Worker</h3>
+          <div class="meta">Full-time · On-site · Facilities</div>
         </div>
         <a class="btn btn-outline btn-small" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply</a>
+      </div>
+
+      <div class="job-row">
+        <div>
+          <h3>Security Guard</h3>
+          <div class="meta">Full-time · On-site · Security</div>
+        </div>
+        <a class="btn btn-outline btn-small" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply</a>
+      </div>
+
+      <div class="job-row">
+        <div>
+          <h3>Research Analyst</h3>
+          <div class="meta">Full-time · On-site · Research</div>
+        </div>
+        <a class="btn btn-outline btn-small" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CLASSIFIED DIVISIONS ========================= -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Classified Divisions</span>
+    <h2>FRF &amp; FEU</h2>
+    <p class="section-lede">
+      Two specialized divisions operate within the Noobtech Corporation.
+      Recruitment into either division is by invitation only. No further
+      information is available on this site.
+    </p>
+
+    <div class="job-list">
+      <div class="job-row">
+        <div>
+          <h3>FRF</h3>
+          <div class="meta">Classified · Invitation Only</div>
+        </div>
+        <span class="btn btn-outline btn-small btn-disabled">Restricted</span>
+      </div>
+      <div class="job-row">
+        <div>
+          <h3>FEU</h3>
+          <div class="meta">Classified · Invitation Only</div>
+        </div>
+        <span class="btn btn-outline btn-small btn-disabled">Restricted</span>
       </div>
     </div>
   </div>
@@ -135,7 +198,7 @@
       <img class="brand-mark" src="assets/img/logo.png" alt="Noobtech Co">
       <div>
         <span class="brand-text">Noobtech</span>
-        <p>Noobtech Corporation. A fictional company, built for this site.</p>
+        <p>Noobtech Corporation. Government-funded. Est. 20██.</p>
       </div>
     </div>
     <div class="footer-cols">
@@ -148,16 +211,25 @@
       <div class="footer-col">
         <h4>Elsewhere</h4>
         <a href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Discord</a>
-        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </div>
   <div class="container footer-bottom">
-    <span>© 2026 Noobtech Corporation. A fictional company.</span>
+    <span>© 2026 Noobtech Corporation. All rights reserved.</span>
     <span>Built with HTML and CSS.</span>
   </div>
 </footer>
 
+<div class="cookie-banner" role="dialog" aria-label="Cookie notice">
+  <p>This site uses cookies to remember your preferences, including your light/dark theme selection. See our practices before continuing.</p>
+  <div class="cookie-actions">
+    <button class="btn btn-primary btn-small" data-cookie-accept>Accept</button>
+    <button class="btn btn-outline btn-small" data-cookie-decline>Decline</button>
+  </div>
+</div>
+
 <script src="assets/js/script.js"></script>
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/cookie-consent.js"></script>
 </body>
 </html>
