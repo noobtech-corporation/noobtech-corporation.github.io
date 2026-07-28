@@ -3,8 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Noobtech Co — Practical Technology, Built to Work</title>
-<meta name="description" content="Noobtech Co (Noobtech Corporation) designs and builds software and hardware products for teams that need reliable technology.">
+<title>Noobtech Co — Anomaly Research &amp; Containment</title>
+<meta name="description" content="The Noobtech Corporation is a government-funded organization specializing in the research and containment of anomalous phenomena.">
+
+<!--
+  BLOCKING THEME SCRIPT
+  Runs before CSS paints so the page never flashes the wrong theme.
+  Reads the saved preference from localStorage; defaults to dark.
+-->
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('noobtech-theme');
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -29,6 +45,14 @@
       <a href="index.html" aria-current="page">Home</a>
       <a href="info.html">Info</a>
       <a href="careers.html">Careers</a>
+
+      <!-- Light/dark toggle — persists via localStorage, see assets/js/theme.js -->
+      <button class="theme-toggle" aria-label="Toggle light and dark mode" aria-pressed="false">
+        <span class="theme-toggle-icon sun">☀</span>
+        <span class="theme-toggle-icon moon">☾</span>
+        <span class="theme-toggle-thumb"></span>
+      </button>
+
       <!--
         =====================================================================
         EDIT ME: This is the "Apply for a Job" button. Replace the href below
@@ -47,11 +71,11 @@
   <div class="container hero-inner">
     <div class="hero-copy">
       <span class="eyebrow">Noobtech Co</span>
-      <h1>Practical technology, built to work.</h1>
+      <h1>We study what should not exist, and contain what cannot be explained.</h1>
       <p class="lede">
-        Noobtech Corporation designs, builds, and supports software and hardware
-        products for teams that need technology they can rely on. We work in
-        small, focused teams and ship products we stand behind.
+        The Noobtech Corporation is a government-funded organization specializing
+        in the research and containment of anomalous phenomena. Our mandate
+        prioritizes study and containment over destruction.
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply for a Job</a>
@@ -70,20 +94,20 @@
 <section class="stat-strip">
   <div class="container stat-grid">
     <div class="stat-item">
-      <div class="num">2019</div>
+      <div class="num">20██</div>
       <div class="label">Founded</div>
     </div>
     <div class="stat-item">
-      <div class="num">3</div>
-      <div class="label">Product teams</div>
+      <div class="num">6,000+</div>
+      <div class="label">Personnel</div>
     </div>
     <div class="stat-item">
-      <div class="num">40+</div>
-      <div class="label">People on staff</div>
-    </div>
-    <div class="stat-item">
-      <div class="num">Remote</div>
+      <div class="num">████</div>
       <div class="label">Headquarters</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">Contain</div>
+      <div class="label">Not destroy</div>
     </div>
   </div>
 </section>
@@ -92,7 +116,7 @@
 <section class="section">
   <div class="container">
     <span class="eyebrow">What We Do</span>
-    <h2>Three areas of focus</h2>
+    <h2>Three areas of operation</h2>
     <p class="section-lede">
       Placeholder copy — replace this with a description of what your
       company actually does. Look for "EDIT ME" comments in index.html.
@@ -101,19 +125,19 @@
     <!-- EDIT ME: "What We Do" cards — duplicate a .card block to add more -->
     <div class="card-grid">
       <div class="card">
-        <span class="tag">Product Engineering</span>
-        <h3>Software Development</h3>
-        <p>We design and build software products from early concept through to long-term support.</p>
+        <span class="tag">Research Division</span>
+        <h3>Anomaly Research</h3>
+        <p>We study anomalous phenomena to understand associated risks and identify safe, sustainable methods of containment.</p>
       </div>
       <div class="card">
-        <span class="tag">Hardware</span>
-        <h3>Device Prototyping</h3>
-        <p>Our hardware team builds and tests prototypes before products move into wider production.</p>
+        <span class="tag">Field Operations</span>
+        <h3>Containment &amp; Response</h3>
+        <p>Trained field teams respond to and contain anomalies before they pose a risk to the public.</p>
       </div>
       <div class="card">
-        <span class="tag">Support</span>
-        <h3>Client Services</h3>
-        <p>We work directly with clients to maintain, support, and improve the products we deliver.</p>
+        <span class="tag">Applied Technology</span>
+        <h3>Hoverblock Systems</h3>
+        <p>Our engineering division develops applied technology, including the Hoverblock platform, for use in containment and field operations.</p>
       </div>
     </div>
   </div>
@@ -124,8 +148,8 @@
   <div class="container">
     <div class="cta-band">
       <span class="eyebrow">Careers</span>
-      <h2>Join the team at Noobtech</h2>
-      <p>We're hiring across engineering, hardware, and operations. Applications are handled through our Discord server.</p>
+      <h2>Join the Noobtech Corporation</h2>
+      <p>We hire across research, field operations, engineering, and support. We take only the most qualified candidates for each role.</p>
       <a class="btn btn-primary" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply for a Job</a>
     </div>
   </div>
@@ -138,7 +162,7 @@
       <img class="brand-mark" src="assets/img/logo.png" alt="Noobtech Co">
       <div>
         <span class="brand-text">Noobtech</span>
-        <p>Noobtech Corporation. A fictional company, built for this site.</p>
+        <p>Noobtech Corporation. Government-funded. Est. 20██.</p>
       </div>
     </div>
 
@@ -153,18 +177,27 @@
         <h4>Elsewhere</h4>
         <!-- EDIT ME: DISCORD LINK — replace with your real invite -->
         <a href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Discord</a>
-        <!-- EDIT ME: optional — add GitHub / socials here -->
-        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </div>
 
   <div class="container footer-bottom">
-    <span>© 2026 Noobtech Corporation. A fictional company.</span>
+    <span>© 2026 Noobtech Corporation. All rights reserved.</span>
     <span>Built with HTML and CSS.</span>
   </div>
 </footer>
 
+<!-- ============================ COOKIE NOTICE =========================== -->
+<div class="cookie-banner" role="dialog" aria-label="Cookie notice">
+  <p>This site uses cookies to remember your preferences, including your light/dark theme selection. See our practices before continuing.</p>
+  <div class="cookie-actions">
+    <button class="btn btn-primary btn-small" data-cookie-accept>Accept</button>
+    <button class="btn btn-outline btn-small" data-cookie-decline>Decline</button>
+  </div>
+</div>
+
 <script src="assets/js/script.js"></script>
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/cookie-consent.js"></script>
 </body>
 </html>
