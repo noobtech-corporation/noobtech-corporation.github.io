@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NoobTech Corporation — We're Figuring It Out</title>
-<meta name="description" content="NoobTech Corporation: a fictional tech company that ships gear-driven ideas with a whole lot of heart (and questionable experience).">
+<title>Noobtech Co — Practical Technology, Built to Work</title>
+<meta name="description" content="Noobtech Co (Noobtech Corporation) designs and builds software and hardware products for teams that need reliable technology.">
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
@@ -19,11 +18,9 @@
 <header class="site-header">
   <nav class="nav-bar">
     <a class="brand" href="index.html">
-      <img src="assets/img/logo.png" alt="NoobTech Corporation logo">
-      <span class="brand-text">
-        <strong>NoobTech</strong>
-        <span>CORPORATION</span>
-      </span>
+      <!-- logomark (no text) — used in the nav / footer where space is tight -->
+      <img class="brand-mark" src="assets/img/logo.png" alt="Noobtech Co">
+      <span class="brand-text">Noobtech</span>
     </a>
 
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">MENU</button>
@@ -34,62 +31,59 @@
       <a href="careers.html">Careers</a>
       <!--
         =====================================================================
-        EDIT ME: This is the "Apply for a Job" button. It currently points to
-        a placeholder Discord invite. Replace the href below with your real
-        Discord invite link (e.g. https://discord.gg/yourcode).
-        This same button also appears in info.html, careers.html and the
-        footer of every page — search for "EDIT ME: DISCORD LINK" to find
-        every spot that needs updating.
+        EDIT ME: This is the "Apply for a Job" button. Replace the href below
+        with your real Discord invite link (e.g. https://discord.gg/yourcode).
+        The same button appears in info.html, careers.html and the footer of
+        every page — search for "EDIT ME: DISCORD LINK" to find every spot.
         =====================================================================
       -->
-      <a class="btn btn-apply" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply for a Job</a>
+      <a class="btn btn-primary btn-small" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply for a Job</a>
     </div>
   </nav>
 </header>
 
 <!-- ============================== HERO =============================== -->
 <section class="hero">
-  <svg class="hero-gear" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M100 20 L108 40 L92 40 Z M100 180 L92 160 L108 160 Z M20 100 L40 92 L40 108 Z M180 100 L160 108 L160 92 Z M45 45 L60 55 L50 65 Z M155 45 L145 60 L135 50 Z M45 155 L55 140 L65 150 Z M155 155 L140 145 L150 135 Z"
-      fill="#F2B705"/>
-    <circle cx="100" cy="100" r="55" stroke="#F2B705" stroke-width="8"/>
-    <circle cx="100" cy="100" r="22" stroke="#F2B705" stroke-width="8"/>
-  </svg>
-
   <div class="container hero-inner">
-    <span class="eyebrow">Est. Whenever We Got Around To It</span>
-    <h1>We build things.<br>Sometimes <span class="accent">on purpose.</span></h1>
-    <p class="lede">
-      NoobTech Corporation is a fictional company running on two things: gears we
-      don't fully understand and a heart we put into everything anyway. This whole
-      site lives on GitHub Pages, so no domain fees, no server bills, just vibes
-      and version control.
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-apply" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply for a Job →</a>
-      <a class="btn btn-outline" href="info.html">Read the Info Page</a>
+    <div class="hero-copy">
+      <span class="eyebrow">Noobtech Co</span>
+      <h1>Practical technology, built to work.</h1>
+      <p class="lede">
+        Noobtech Corporation designs, builds, and supports software and hardware
+        products for teams that need technology they can rely on. We work in
+        small, focused teams and ship products we stand behind.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply for a Job</a>
+        <a class="btn btn-outline" href="info.html">About Noobtech</a>
+      </div>
+    </div>
+
+    <div class="hero-mark">
+      <!-- full lockup (icon + wordmark) — used where there's room to show the whole logo -->
+      <img src="assets/img/logo2.png" alt="Noobtech Corporation">
     </div>
   </div>
 </section>
 
-<!-- ========================== SPEC PLATE STRIP ========================= -->
-<section class="spec-plate">
-  <div class="container spec-grid">
-    <div class="spec-item">
-      <div class="num">0.5</div>
-      <div class="label">Years of experience</div>
+<!-- ========================== STAT STRIP ========================= -->
+<section class="stat-strip">
+  <div class="container stat-grid">
+    <div class="stat-item">
+      <div class="num">2019</div>
+      <div class="label">Founded</div>
     </div>
-    <div class="spec-item">
-      <div class="num">9,001</div>
-      <div class="label">Bugs shipped as features</div>
+    <div class="stat-item">
+      <div class="num">3</div>
+      <div class="label">Product teams</div>
     </div>
-    <div class="spec-item">
-      <div class="num">∞</div>
-      <div class="label">Coffee reserves</div>
+    <div class="stat-item">
+      <div class="num">40+</div>
+      <div class="label">People on staff</div>
     </div>
-    <div class="spec-item">
-      <div class="num">100%</div>
-      <div class="label">Heart, no matter what</div>
+    <div class="stat-item">
+      <div class="num">Remote</div>
+      <div class="label">Headquarters</div>
     </div>
   </div>
 </section>
@@ -98,32 +92,28 @@
 <section class="section">
   <div class="container">
     <span class="eyebrow">What We Do</span>
-    <h2>A little bit of everything, badly at first</h2>
+    <h2>Three areas of focus</h2>
     <p class="section-lede">
-      This section is placeholder copy — swap in whatever your fictional
-      company actually does. Look for "EDIT ME" comments in index.html to
-      find this block in the source.
+      Placeholder copy — replace this with a description of what your
+      company actually does. Look for "EDIT ME" comments in index.html.
     </p>
 
-    <!--
-      EDIT ME: "What We Do" cards. Duplicate a .card block to add more,
-      or edit the tag / h3 / p text inside each one below.
-    -->
+    <!-- EDIT ME: "What We Do" cards — duplicate a .card block to add more -->
     <div class="card-grid">
       <div class="card">
-        <span class="tag">Division 01</span>
-        <h3>Gadget Prototyping</h3>
-        <p>We build first drafts of things nobody asked for, then act surprised when they kind of work.</p>
+        <span class="tag">Product Engineering</span>
+        <h3>Software Development</h3>
+        <p>We design and build software products from early concept through to long-term support.</p>
       </div>
       <div class="card">
-        <span class="tag">Division 02</span>
-        <h3>Software, Probably</h3>
-        <p>Code gets written. Some of it even gets tested. All of it ships with love.</p>
+        <span class="tag">Hardware</span>
+        <h3>Device Prototyping</h3>
+        <p>Our hardware team builds and tests prototypes before products move into wider production.</p>
       </div>
       <div class="card">
-        <span class="tag">Division 03</span>
-        <h3>Community & Vibes</h3>
-        <p>Our Discord is where the real decisions get made, usually around 2am.</p>
+        <span class="tag">Support</span>
+        <h3>Client Services</h3>
+        <p>We work directly with clients to maintain, support, and improve the products we deliver.</p>
       </div>
     </div>
   </div>
@@ -133,10 +123,10 @@
 <section class="section">
   <div class="container">
     <div class="cta-band">
-      <span class="eyebrow">Join The Crew</span>
-      <h2>Come build things badly with us</h2>
-      <p>We're hiring for basically anything. No experience required — we don't have any either.</p>
-      <a class="btn btn-apply" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply for a Job →</a>
+      <span class="eyebrow">Careers</span>
+      <h2>Join the team at Noobtech</h2>
+      <p>We're hiring across engineering, hardware, and operations. Applications are handled through our Discord server.</p>
+      <a class="btn btn-primary" href="https://discord.gg/YOUR-INVITE-CODE" target="_blank" rel="noopener">Apply for a Job</a>
     </div>
   </div>
 </section>
@@ -144,12 +134,12 @@
 <!-- ============================= FOOTER ================================ -->
 <footer class="site-footer">
   <div class="container footer-inner">
-    <div class="brand">
-      <img src="assets/img/logo.png" alt="NoobTech Corporation logo" style="height:36px;width:36px;">
-      <span class="brand-text">
-        <strong>NoobTech</strong>
-        <span>CORPORATION</span>
-      </span>
+    <div class="footer-brand">
+      <img class="brand-mark" src="assets/img/logo.png" alt="Noobtech Co">
+      <div>
+        <span class="brand-text">Noobtech</span>
+        <p>Noobtech Corporation. A fictional company, built for this site.</p>
+      </div>
     </div>
 
     <div class="footer-cols">
@@ -170,8 +160,8 @@
   </div>
 
   <div class="container footer-bottom">
-    <span>© 2026 NoobTech Corporation. A fictional company. No refunds, we don't sell anything.</span>
-    <span>Built with HTML, CSS, and mild confidence.</span>
+    <span>© 2026 Noobtech Corporation. A fictional company.</span>
+    <span>Built with HTML and CSS.</span>
   </div>
 </footer>
 
