@@ -3,24 +3,26 @@
    Strictly black / white / greyscale. No color anywhere.
    ========================================================================== */
 
+/* Light Theme (Default) */
 :root {
   --black:        #101010;
   --ink:          #1A1A1A;
   --grey-900:     #2B2B2B;
   --grey-700:     #4E4E4E;
-  --grey-500:     #7A7A7A;
+  --grey-50:      #7A7A7A;
   --grey-300:     #C7C7C7;
   --grey-200:     #DEDEDE;
   --grey-100:     #EEEEEE;
-  --grey-50:      #F6F6F5;
+  --grey-50-bg:   #F6F6F5;
   --white:        #FFFFFF;
 
   --bg:           var(--white);
-  --bg-alt:       var(--grey-50);
+  --bg-alt:       var(--grey-50-bg);
+  --header-bg:    rgba(255, 255, 255, 0.92);
   --border:       var(--grey-200);
   --text:         var(--ink);
   --text-dim:     var(--grey-700);
-  --text-faint:   var(--grey-500);
+  --text-faint:   var(--grey-50);
 
   --font-display: 'Oswald', 'Arial Narrow', sans-serif;
   --font-mono:    'Space Mono', 'Courier New', monospace;
@@ -28,6 +30,33 @@
 
   --radius: 2px;
   --container-w: 1120px;
+  
+  --logo-filter:  none;
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  --black:        #FFFFFF;
+  --ink:          #F6F6F5;
+  --grey-900:     #EEEEEE;
+  --grey-700:     #C7C7C7;
+  --grey-50:      #7A7A7A;
+  --grey-300:     #4E4E4E;
+  --grey-200:     #2B2B2B;
+  --grey-100:     #1A1A1A;
+  --grey-50-bg:   #181818;
+  --white:        #101010;
+
+  --bg:           #101010;
+  --bg-alt:       #181818;
+  --header-bg:    rgba(16, 16, 16, 0.92);
+  --border:       #2B2B2B;
+  --text:         #F6F6F5;
+  --text-dim:     #C7C7C7;
+  --text-faint:   #7A7A7A;
+
+  /* Automatically inverts black logos/images to white in dark mode */
+  --logo-filter:  invert(1) hue-rotate(180deg);
 }
 
 /* ---- Reset -------------------------------------------------------------- */
@@ -83,7 +112,7 @@ p { color: var(--text-dim); }
   content: "";
   width: 16px;
   height: 1px;
-  background: var(--grey-500);
+  background: var(--grey-50);
   display: inline-block;
 }
 
@@ -97,7 +126,7 @@ p { color: var(--text-dim); }
 /* ---- Header / nav --------------------------------------------------------- */
 .site-header {
   border-bottom: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--header-bg);
   backdrop-filter: blur(6px);
   position: sticky;
   top: 0;
@@ -127,6 +156,8 @@ p { color: var(--text-dim); }
   width: 34px;
   object-fit: contain;
   flex-shrink: 0;
+  filter: var(--logo-filter);
+  transition: filter 0.15s ease;
 }
 
 .brand-text {
@@ -176,6 +207,33 @@ p { color: var(--text-dim); }
   border-radius: var(--radius);
   cursor: pointer;
 }
+
+/* ---- Theme Toggle Button Styling ----------------------------------------- */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--black);
+}
+
+/* Show/hide icons depending on theme */
+[data-theme="dark"] .theme-toggle-icon.sun { display: inline-block; }
+[data-theme="dark"] .theme-toggle-icon.moon { display: none; }
+
+[data-theme="light"] .theme-toggle-icon.sun { display: none; }
+[data-theme="light"] .theme-toggle-icon.moon { display: inline-block; }
 
 /* ---- Buttons --------------------------------------------------------------- */
 .btn {
@@ -252,7 +310,12 @@ p { color: var(--text-dim); }
   padding: 40px;
   aspect-ratio: 1 / 1;
 }
-.hero-mark img { width: 100%; height: auto; }
+.hero-mark img { 
+  width: 100%; 
+  height: auto; 
+  filter: var(--logo-filter);
+  transition: filter 0.15s ease;
+}
 
 /* ---- Stat strip ---------------------------------------------------------------- */
 .stat-strip { border-bottom: 1px solid var(--border); background: var(--bg-alt); }
