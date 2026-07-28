@@ -391,6 +391,8 @@
   let signatureImage = null;
   let hasSignatureStroke = false;
   let drawing = false;
+  const brandLogo = new Image();
+  brandLogo.src = 'assets/img/logo.png';
 
   function formatValue(value) {
     return (value || '').trim();
@@ -428,10 +430,17 @@
     ctx.closePath();
   }
 
-  function renderCard(canvas) {
+  function renderCard(canvas, callback) {
     const ctx = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
+
+    if (!brandLogo.complete || brandLogo.naturalWidth === 0) {
+      brandLogo.onload = function () {
+        renderCard(canvas, callback);
+      };
+      return;
+    }
 
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#ffffff';
@@ -458,11 +467,7 @@
     ctx.restore();
 
     // Brand text and mark
-    const brand = new Image();
-    brand.onload = function () {
-      ctx.drawImage(brand, 110, 92, 64, 64);
-    };
-    brand.src = 'assets/img/logo.png';
+    ctx.drawImage(brandLogo, 110, 92, 64, 64);
 
     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--white').trim() || '#ffffff';
     ctx.font = '700 34px "Oswald", sans-serif';
@@ -547,6 +552,10 @@
     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-faint').trim() || '#7a7a7a';
     ctx.font = '600 16px "Inter", sans-serif';
     ctx.fillText('Authorized Signature', 720, signatureY + 120);
+
+    if (callback) {
+      callback();
+    }
   }
 
   function syncSignatureCanvasSize() {
@@ -647,16 +656,18 @@
     exportCanvas.width = 2160;
     exportCanvas.height = 1280;
     const exportCtx = exportCanvas.getContext('2d');
+    exportCtx.clearRect(0, 0, exportCanvas.width, exportCanvas.height);
     exportCtx.scale(2, 2);
     const tempCanvas = document.createElement('canvas');
     tempCanvas.width = 1080;
     tempCanvas.height = 640;
-    renderCard(tempCanvas);
-    exportCtx.drawImage(tempCanvas, 0, 0, 1080, 640);
-    const link = document.createElement('a');
-    link.download = 'business-card.png';
-    link.href = exportCanvas.toDataURL('image/png');
-    link.click();
+    renderCard(tempCanvas, function () {
+      exportCtx.drawImage(tempCanvas, 0, 0, 1080, 640);
+      const link = document.createElement('a');
+      link.download = 'business-card.png';
+      link.href = exportCanvas.toDataURL('image/png');
+      link.click();
+    });
   });
 
   resetBtn.addEventListener('click', resetForm);
