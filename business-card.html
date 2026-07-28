@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Card Generator — Noobtech Co</title>
+  <meta name="description" content="Create a custom Noobtech business card with a face image, role details, and signature.">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('noobtech-theme');
+        document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/logo.png">
+  <style>
+    .generator-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .generator-panel,
+    .preview-panel {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .generator-panel h3,
+    .preview-panel h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+
+    .generator-panel p,
+    .preview-panel p {
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .field-grid .full { grid-column: 1 / -1; }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-faint);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      padding: 11px 12px;
+      font: inherit;
+      border-radius: var(--radius);
+    }
+
+    .field textarea {
+      min-height: 94px;
+      resize: vertical;
+    }
+
+    .field input[type="file"] {
+      padding: 10px 12px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .upload-preview {
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      color: var(--text-faint);
+      text-align: center;
+      padding: 16px;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .upload-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .signature-box {
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      padding: 10px;
+      margin-top: 8px;
+    }
+
+    #signatureCanvas {
+      width: 100%;
+      height: 180px;
+      display: block;
+      border-radius: var(--radius);
+      touch-action: none;
+      background: linear-gradient(135deg, rgba(0,0,0,0.03), rgba(0,0,0,0.06));
+    }
+
+    .signature-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .preview-surface {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+      max-width: 100%;
+    }
+
+    .preview-surface canvas {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .preview-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 920px) {
+      .generator-shell {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav-bar">
+    <a class="brand" href="index.html">
+      <img class="brand-mark" src="assets/img/logo.png" alt="Noobtech Co">
+      <span class="brand-text">Noobtech</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">MENU</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="info.html">Info</a>
+      <a href="careers.html">Careers</a>
+      <a href="business-card.html" aria-current="page">Business Card</a>
+      <button class="theme-toggle" aria-label="Toggle light and dark mode" aria-pressed="false">
+        <span class="theme-toggle-icon sun">☀</span>
+        <span class="theme-toggle-icon moon">☾</span>
+        <span class="theme-toggle-thumb"></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" style="padding: 56px 0 48px;">
+  <div class="container">
+    <span class="eyebrow">Business Card</span>
+    <h1 style="font-size: clamp(2rem, 4.4vw, 3rem);">Build your Noobtech identification card</h1>
+    <p class="lede" style="margin-top: 16px;">
+      Upload a face image, select your role and division, add a date of birth, and sign off with a mouse-drawn or uploaded signature. Everything is rendered as a full-size card image you can download.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="generator-shell">
+      <div class="generator-panel">
+        <span class="eyebrow">Generator</span>
+        <h3>Card details</h3>
+        <p>Leave any field blank and the card will still render cleanly.</p>
+
+        <form id="cardForm">
+          <div class="field-grid">
+            <div class="field full">
+              <label for="fullName">Full name</label>
+              <input id="fullName" name="fullName" type="text" placeholder="Name" maxlength="48">
+            </div>
+
+            <div class="field">
+              <label for="role">Role</label>
+              <select id="role" name="role">
+                <option value="">Select role</option>
+                <option>Software Engineer</option>
+                <option>IT Support Specialist</option>
+                <option>Field Engineer</option>
+                <option>Construction Worker</option>
+                <option>Security Guard</option>
+                <option>Research Analyst</option>
+                <option>Server Construction Helper</option>
+                <option>Leader</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="department">Department</label>
+              <select id="department" name="department">
+                <option value="">Select department</option>
+                <option>Engineering</option>
+                <option>Operations</option>
+                <option>Facilities</option>
+                <option>Security</option>
+                <option>Research</option>
+                <option>Classified</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="division">Division</label>
+              <select id="division" name="division">
+                <option value="">Select division</option>
+                <option>Engineering</option>
+                <option>Operations</option>
+                <option>Research</option>
+                <option>Security</option>
+                <option>Facilities</option>
+                <option>Leadership</option>
+                <option>Administration</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="employment">Employment</label>
+              <select id="employment" name="employment">
+                <option value="">Select status</option>
+                <option>Full-time</option>
+                <option>Remote</option>
+                <option>On-site</option>
+                <option>Invitation Only</option>
+                <option>Restricted</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="dob">Date of birth</label>
+              <input id="dob" name="dob" type="date">
+            </div>
+
+            <div class="field full">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="+1 555 0100">
+            </div>
+
+            <div class="field full">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="name@noobtech.co">
+            </div>
+
+            <div class="field full">
+              <label for="location">Location</label>
+              <input id="location" name="location" type="text" placeholder="Remote / HQ / Site">
+            </div>
+
+            <div class="field full">
+              <label for="notes">Notes</label>
+              <textarea id="notes" name="notes" placeholder="Add an access note, clearance level, or department detail."></textarea>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="faceUpload">Face image</label>
+            <div class="upload-preview" id="facePreview">Upload a portrait to appear on the card.</div>
+            <input id="faceUpload" name="faceUpload" type="file" accept="image/*">
+          </div>
+
+          <div class="field full" style="margin-top: 16px;">
+            <label for="signatureUpload">Signature image</label>
+            <input id="signatureUpload" name="signatureUpload" type="file" accept="image/*">
+          </div>
+
+          <div class="field full" style="margin-top: 16px;">
+            <label>Draw signature</label>
+            <div class="signature-box">
+              <canvas id="signatureCanvas" width="640" height="220"></canvas>
+            </div>
+            <div class="signature-actions">
+              <button type="button" class="btn btn-outline btn-small" id="clearSignatureBtn">Clear</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="preview-panel">
+        <span class="eyebrow">Preview</span>
+        <h3>Business card</h3>
+        <p>The card updates live. Download the final PNG when you are satisfied.</p>
+        <div class="preview-surface">
+          <canvas id="cardCanvas" width="1080" height="640"></canvas>
+        </div>
+        <div class="preview-actions">
+          <button class="btn btn-primary" id="downloadBtn" type="button">Download</button>
+          <button class="btn btn-outline" id="resetBtn" type="button">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img class="brand-mark" src="assets/img/logo.png" alt="Noobtech Co">
+      <div>
+        <span class="brand-text">Noobtech</span>
+        <p>Noobtech Corporation. Government-funded. Est. 20██.</p>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Site</h4>
+        <a href="index.html">Home</a>
+        <a href="info.html">Info</a>
+        <a href="careers.html">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <a href="https://discord.gg/g9yFJSxvJf" target="_blank" rel="noopener">Discord</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Noobtech Corporation. All rights reserved.</span>
+    <span>Built with HTML and CSS.</span>
+  </div>
+</footer>
+
+<script src="assets/js/script.js"></script>
+<script src="assets/js/theme.js"></script>
+<script>
+  const form = document.getElementById('cardForm');
+  const cardCanvas = document.getElementById('cardCanvas');
+  const cardCtx = cardCanvas.getContext('2d');
+  const facePreview = document.getElementById('facePreview');
+  const faceUpload = document.getElementById('faceUpload');
+  const signatureUpload = document.getElementById('signatureUpload');
+  const signatureCanvas = document.getElementById('signatureCanvas');
+  const signatureCtx = signatureCanvas.getContext('2d');
+  const clearSignatureBtn = document.getElementById('clearSignatureBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const resetBtn = document.getElementById('resetBtn');
+
+  let faceImage = null;
+  let signatureImage = null;
+  let hasSignatureStroke = false;
+  let drawing = false;
+
+  function formatValue(value) {
+    return (value || '').trim();
+  }
+
+  function safeText(value, fallback = '—') {
+    const text = formatValue(value);
+    return text || fallback;
+  }
+
+  function loadImageFromFile(file, callback) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const img = new Image();
+      img.onload = function () {
+        callback(img);
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function drawRoundedRect(ctx, x, y, width, height, radius) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+  }
+
+  function renderCard(canvas) {
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#ffffff';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-alt').trim() || '#f7f7f7';
+    ctx.fillRect(0, 0, width, height);
+
+    // Card frame
+    ctx.save();
+    drawRoundedRect(ctx, 60, 40, width - 120, height - 80, 24);
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#ffffff';
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#dcdcdc';
+    ctx.stroke();
+    ctx.restore();
+
+    // Header stripe
+    ctx.save();
+    drawRoundedRect(ctx, 80, 64, width - 160, 140, 18);
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--black').trim() || '#101010';
+    ctx.fill();
+    ctx.restore();
+
+    // Brand text and mark
+    const brand = new Image();
+    brand.onload = function () {
+      ctx.drawImage(brand, 110, 92, 64, 64);
+    };
+    brand.src = 'assets/img/logo.png';
+
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--white').trim() || '#ffffff';
+    ctx.font = '700 34px "Oswald", sans-serif';
+    ctx.fillText('NOOBTECH', 196, 122);
+    ctx.font = '500 16px "Inter", sans-serif';
+    ctx.fillText('CORPORATION', 196, 148);
+
+    // Face area
+    const faceX = 100;
+    const faceY = 240;
+    const faceSize = 200;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(faceX, faceY, faceSize, faceSize);
+    ctx.clip();
+    if (faceImage) {
+      ctx.drawImage(faceImage, faceX, faceY, faceSize, faceSize);
+    } else {
+      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--grey-200').trim() || '#dddddd';
+      ctx.fillRect(faceX, faceY, faceSize, faceSize);
+      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-faint').trim() || '#7a7a7a';
+      ctx.font = '600 24px "Inter", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Face', faceX + faceSize / 2, faceY + faceSize / 2 + 8);
+      ctx.textAlign = 'left';
+    }
+    ctx.restore();
+
+    ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#dcdcdc';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(faceX, faceY, faceSize, faceSize);
+
+    // Info panel
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text').trim() || '#111111';
+    ctx.font = '700 30px "Oswald", sans-serif';
+    const name = safeText(document.getElementById('fullName').value, 'YOUR NAME');
+    ctx.fillText(name.toUpperCase(), 360, 270);
+
+    ctx.font = '600 18px "Inter", sans-serif';
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-dim').trim() || '#4e4e4e';
+    const role = safeText(document.getElementById('role').value, 'ROLE');
+    const department = safeText(document.getElementById('department').value, 'DEPARTMENT');
+    const division = safeText(document.getElementById('division').value, 'DIVISION');
+    const employment = safeText(document.getElementById('employment').value, 'STATUS');
+    ctx.fillText(`${role} · ${department}`, 360, 308);
+    ctx.fillText(`${division} · ${employment}`, 360, 336);
+
+    ctx.font = '500 16px "Inter", sans-serif';
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text').trim() || '#111111';
+    const dob = safeText(document.getElementById('dob').value ? new Date(document.getElementById('dob').value).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' }) : '', 'DOB');
+    ctx.fillText(`DOB ${dob}`, 360, 384);
+    const phone = safeText(document.getElementById('phone').value, 'PHONE');
+    const email = safeText(document.getElementById('email').value, 'EMAIL');
+    const location = safeText(document.getElementById('location').value, 'LOCATION');
+    ctx.fillText(`${phone}`, 360, 418);
+    ctx.fillText(`${email}`, 360, 450);
+    ctx.fillText(`${location}`, 360, 482);
+
+    // Notes block
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-dim').trim() || '#4e4e4e';
+    ctx.font = '500 15px "Inter", sans-serif';
+    const notes = safeText(document.getElementById('notes').value, 'No notes provided.');
+    const lines = notes.split(/\n/);
+    lines.forEach((line, i) => {
+      ctx.fillText(line, 360, 530 + (i * 18));
+    });
+
+    // Signature section
+    const signatureY = 520;
+    const signatureAreaWidth = 270;
+    const signatureAreaHeight = 92;
+    ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#dcdcdc';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(720, signatureY, signatureAreaWidth, signatureAreaHeight);
+
+    if (signatureImage) {
+      ctx.drawImage(signatureImage, 720, signatureY, signatureAreaWidth, signatureAreaHeight);
+    } else if (hasSignatureStroke) {
+      ctx.drawImage(signatureCanvas, 720, signatureY, signatureAreaWidth, signatureAreaHeight);
+    }
+
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-faint').trim() || '#7a7a7a';
+    ctx.font = '600 16px "Inter", sans-serif';
+    ctx.fillText('Authorized Signature', 720, signatureY + 120);
+  }
+
+  function syncSignatureCanvasSize() {
+    const ratio = window.devicePixelRatio || 1;
+    const width = signatureCanvas.clientWidth || 640;
+    const height = signatureCanvas.clientHeight || 220;
+    signatureCanvas.width = width * ratio;
+    signatureCanvas.height = height * ratio;
+    signatureCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    signatureCtx.lineCap = 'round';
+    signatureCtx.lineJoin = 'round';
+    signatureCtx.lineWidth = 2.4;
+    signatureCtx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--black').trim() || '#101010';
+  }
+
+  function resetSignature() {
+    signatureCtx.clearRect(0, 0, signatureCanvas.clientWidth || 640, signatureCanvas.clientHeight || 220);
+    hasSignatureStroke = false;
+    signatureImage = null;
+    signatureUpload.value = '';
+    renderCard(cardCanvas);
+  }
+
+  function startDrawing(event) {
+    drawing = true;
+    const rect = signatureCanvas.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * (signatureCanvas.clientWidth || 640);
+    const y = ((event.clientY - rect.top) / rect.height) * (signatureCanvas.clientHeight || 220);
+    signatureCtx.beginPath();
+    signatureCtx.moveTo(x, y);
+    signatureCtx.lineTo(x, y);
+    signatureCtx.stroke();
+    hasSignatureStroke = true;
+  }
+
+  function draw(event) {
+    if (!drawing) return;
+    const rect = signatureCanvas.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * (signatureCanvas.clientWidth || 640);
+    const y = ((event.clientY - rect.top) / rect.height) * (signatureCanvas.clientHeight || 220);
+    signatureCtx.lineTo(x, y);
+    signatureCtx.stroke();
+  }
+
+  function stopDrawing() {
+    drawing = false;
+    renderCard(cardCanvas);
+  }
+
+  function resetForm() {
+    form.reset();
+    faceImage = null;
+    signatureImage = null;
+    hasSignatureStroke = false;
+    facePreview.innerHTML = 'Upload a portrait to appear on the card.';
+    signatureCtx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+    renderCard(cardCanvas);
+  }
+
+  function refreshPreview() {
+    renderCard(cardCanvas);
+  }
+
+  faceUpload.addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    loadImageFromFile(file, function (img) {
+      faceImage = img;
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        facePreview.innerHTML = '<img src="' + event.target.result + '" alt="Face preview">';
+      };
+      reader.readAsDataURL(file);
+      refreshPreview();
+    });
+  });
+
+  signatureUpload.addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    loadImageFromFile(file, function (img) {
+      signatureImage = img;
+      hasSignatureStroke = false;
+      refreshPreview();
+    });
+  });
+
+  clearSignatureBtn.addEventListener('click', function () {
+    signatureCtx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+    hasSignatureStroke = false;
+    signatureImage = null;
+    signatureUpload.value = '';
+    refreshPreview();
+  });
+
+  downloadBtn.addEventListener('click', function () {
+    const exportCanvas = document.createElement('canvas');
+    exportCanvas.width = 2160;
+    exportCanvas.height = 1280;
+    const exportCtx = exportCanvas.getContext('2d');
+    exportCtx.scale(2, 2);
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = 1080;
+    tempCanvas.height = 640;
+    renderCard(tempCanvas);
+    exportCtx.drawImage(tempCanvas, 0, 0, 1080, 640);
+    const link = document.createElement('a');
+    link.download = 'business-card.png';
+    link.href = exportCanvas.toDataURL('image/png');
+    link.click();
+  });
+
+  resetBtn.addEventListener('click', resetForm);
+  form.addEventListener('input', refreshPreview);
+  form.addEventListener('change', refreshPreview);
+
+  signatureCanvas.addEventListener('pointerdown', function (event) {
+    event.preventDefault();
+    signatureImage = null;
+    signatureUpload.value = '';
+    startDrawing(event);
+  });
+  signatureCanvas.addEventListener('pointermove', function (event) {
+    event.preventDefault();
+    draw(event);
+  });
+  signatureCanvas.addEventListener('pointerup', stopDrawing);
+  signatureCanvas.addEventListener('pointerleave', stopDrawing);
+
+  syncSignatureCanvasSize();
+  resetForm();
+</script>
+</body>
+</html>
