@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Noobtech Co — Anomaly Research &amp; Containment</title>
-<meta name="description" content="The Noobtech Corporation is a government-funded organization specializing in the research and containment of anomalous phenomena.">
+<title>Noobtech Co — Anomaly Research, Containment &amp; Destruction</title>
+<meta name="description" content="Official information about the Noobtech Corporation, founded after the WOW! Signal in 1977.">
 
 <!--
   BLOCKING THEME SCRIPT
@@ -67,16 +67,84 @@
   </nav>
 </header>
 
+<!-- ========================== DATE CALCULATOR ========================= -->
+<section class="date-calculator" id="date-calculator">
+  <div class="container">
+    <div class="calculator-heading">
+      <div>
+        <span class="eyebrow">Temporal Instruments</span>
+        <h2>DATE CALCULATOR</h2>
+      </div>
+      <p>Translate between the old Gregorian calendar and Noobtech Co.'s 13-month system.</p>
+    </div>
+
+    <div class="calculator-grid">
+      <form class="date-form" id="old-date-form">
+        <span class="calculator-label">Old date / Gregorian</span>
+        <label for="old-date">Date and time</label>
+        <input id="old-date" name="old-date" type="text" placeholder="DD/MM/YYYY HH:MM" inputmode="numeric" autocomplete="off" required>
+        <button class="btn btn-primary" type="submit">Convert to new date</button>
+      </form>
+
+      <div class="conversion-mark" aria-hidden="true">⇄</div>
+
+      <form class="date-form" id="new-date-form">
+        <span class="calculator-label">New date / Noobtech</span>
+        <div class="new-date-fields">
+          <label>
+            Year
+            <input id="new-year" name="new-year" type="number" min="1" placeholder="YYYY" required>
+          </label>
+          <label>
+            Month
+            <select id="new-month" name="new-month" required></select>
+          </label>
+          <label>
+            Day
+            <input id="new-day" name="new-day" type="number" min="1" max="28" placeholder="DD" required>
+          </label>
+          <label>
+            Hour
+            <input id="new-hour" name="new-hour" type="number" min="0" max="35" placeholder="HH" required>
+          </label>
+          <label>
+            Minute
+            <input id="new-minute" name="new-minute" type="number" min="0" max="59" placeholder="MM" required>
+          </label>
+        </div>
+        <button class="btn btn-outline" type="submit">Convert to old date</button>
+      </form>
+    </div>
+
+    <output class="calculator-result" id="calculator-result" aria-live="polite">Enter a date to begin.</output>
+    <p class="calculator-note">Each month has 28 days. In leap years, September 14 and September 15 each run for 36 hours. Gammer is month 13.</p>
+  </div>
+</section>
+
+<!-- ========================== OFFICIAL HOLIDAYS ======================== -->
+<section class="official-holidays">
+  <div class="container">
+    <div class="holidays-heading">
+      <div>
+        <span class="eyebrow">Calendar Notice</span>
+        <h2>OFFICIAL HOLIDAYS</h2>
+      </div>
+      <p>Recognized dates for Noobtech personnel, shown in both calendar systems.</p>
+    </div>
+    <div class="holiday-list" id="holiday-list"></div>
+  </div>
+</section>
+
 <!-- ============================== HERO =============================== -->
 <section class="hero">
   <div class="container hero-inner">
     <div class="hero-copy">
       <span class="eyebrow">Noobtech Co</span>
-      <h1>We study what should not exist, and contain what cannot be explained.</h1>
+      <h1>Founded after the signal. Built for the abnormal.</h1>
       <p class="lede">
-        The Noobtech Corporation is a government-funded organization specializing
-        in the research and containment of anomalous phenomena. Our mandate
-        prioritizes study and containment over destruction.
+        Officially founded on August 16, 1977, shortly after the WOW! Signal was
+        observed, the Noobtech Corporation researches, contains, and destroys
+        anomalous phenomena from a single secured site.
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://discord.gg/g9yFJSxvJf" target="_blank" rel="noopener">Apply for a Job</a>
@@ -95,20 +163,20 @@
 <section class="stat-strip">
   <div class="container stat-grid">
     <div class="stat-item">
-      <div class="num">20██</div>
-      <div class="label">Founded</div>
+      <div class="num">1977</div>
+      <div class="label">Founded after the WOW! Signal</div>
     </div>
     <div class="stat-item">
-      <div class="num">6,000+</div>
-      <div class="label">Personnel</div>
+      <div class="num">1</div>
+      <div class="label">Major site</div>
     </div>
     <div class="stat-item">
-      <div class="num">████</div>
-      <div class="label">Headquarters</div>
+      <div class="num">6</div>
+      <div class="label">Floors</div>
     </div>
     <div class="stat-item">
-      <div class="num">Contain</div>
-      <div class="label">Not destroy</div>
+      <div class="num">3–6</div>
+      <div class="label">Anomaly sectors</div>
     </div>
   </div>
 </section>
@@ -117,9 +185,9 @@
 <section class="section">
   <div class="container">
     <span class="eyebrow">What We Do</span>
-    <h2>Three areas of operation</h2>
+     <h2>Research, containment, destruction</h2>
     <p class="section-lede">
-       The trinity of our operations
+       Three connected functions carried out across the Noobtech site.
     </p>
 
     <!-- EDIT ME: "What We Do" cards — duplicate a .card block to add more -->
@@ -127,17 +195,17 @@
       <div class="card">
         <span class="tag">Research Division</span>
         <h3>Anomaly Research</h3>
-        <p>We study anomalous phenomena to understand associated risks and identify safe, sustainable methods of containment.</p>
+        <p>We study anomalous phenomena and document their risks, behaviors, and possible uses.</p>
       </div>
       <div class="card">
         <span class="tag">Field Operations</span>
-        <h3>Containment &amp; Response</h3>
-        <p>Trained field teams respond to and contain anomalies before they pose a risk to the public.</p>
+        <h3>Containment</h3>
+        <p>Sectors 3 through 6 are dedicated to containing and studying anomalies inside the secured site.</p>
       </div>
       <div class="card">
-        <span class="tag">Applied Technology</span>
-        <h3>Hoverblock Systems</h3>
-        <p>Our engineering division develops applied technology, including the Hoverblock platform, for use in containment and field operations.</p>
+        <span class="tag">Anomaly Operations</span>
+        <h3>Destruction</h3>
+        <p>Three of the site’s floors are solely dedicated to anomaly destruction and study. Clearance is required for every floor.</p>
       </div>
     </div>
   </div>
@@ -162,7 +230,7 @@
       <img class="brand-mark" src="assets/img/logo.png" alt="Noobtech Co">
       <div>
         <span class="brand-text">Noobtech</span>
-        <p>Noobtech Corporation. Government-funded. Est. 20██.</p>
+        <p>Noobtech Corporation. Government-funded. Est. August 16, 1977.</p>
       </div>
     </div>
 
