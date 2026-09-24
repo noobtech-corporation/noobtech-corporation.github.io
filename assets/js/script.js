@@ -156,6 +156,7 @@ function formatNewDate(year, monthIndex, day, hour, minute) {
 function initializeDateCalculator() {
   var oldForm = document.getElementById('old-date-form');
   var newForm = document.getElementById('new-date-form');
+  renderHolidays();
   if (!oldForm || !newForm) return;
 
   var monthSelect = document.getElementById('new-month');
@@ -194,5 +195,4 @@ function initializeDateCalculator() {
     result.textContent = 'OLD DATE  /  ' + yearHoursToOldDate(newDate.year, newDate.hours);
   });
 
-  renderHolidays();
 }

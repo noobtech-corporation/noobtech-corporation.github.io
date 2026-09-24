@@ -45,6 +45,7 @@
       <a href="index.html" aria-current="page">Home</a>
       <a href="info.html">Info</a>
       <a href="careers.html">Careers</a>
+      <a href="calendar.html">Calendar</a>
       <a href="business-card.html">Business Card</a>
 
       <!-- Light/dark toggle — persists via localStorage, see assets/js/theme.js -->
@@ -66,74 +67,6 @@
     </div>
   </nav>
 </header>
-
-<!-- ========================== DATE CALCULATOR ========================= -->
-<section class="date-calculator" id="date-calculator">
-  <div class="container">
-    <div class="calculator-heading">
-      <div>
-        <span class="eyebrow">Temporal Instruments</span>
-        <h2>DATE CALCULATOR</h2>
-      </div>
-      <p>Translate between the old Gregorian calendar and Noobtech Co.'s 13-month system.</p>
-    </div>
-
-    <div class="calculator-grid">
-      <form class="date-form" id="old-date-form">
-        <span class="calculator-label">Old date / Gregorian</span>
-        <label for="old-date">Date and time</label>
-        <input id="old-date" name="old-date" type="text" placeholder="DD/MM/YYYY HH:MM" inputmode="numeric" autocomplete="off" required>
-        <button class="btn btn-primary" type="submit">Convert to new date</button>
-      </form>
-
-      <div class="conversion-mark" aria-hidden="true">⇄</div>
-
-      <form class="date-form" id="new-date-form">
-        <span class="calculator-label">New date / Noobtech</span>
-        <div class="new-date-fields">
-          <label>
-            Year
-            <input id="new-year" name="new-year" type="number" min="1" placeholder="YYYY" required>
-          </label>
-          <label>
-            Month
-            <select id="new-month" name="new-month" required></select>
-          </label>
-          <label>
-            Day
-            <input id="new-day" name="new-day" type="number" min="1" max="28" placeholder="DD" required>
-          </label>
-          <label>
-            Hour
-            <input id="new-hour" name="new-hour" type="number" min="0" max="35" placeholder="HH" required>
-          </label>
-          <label>
-            Minute
-            <input id="new-minute" name="new-minute" type="number" min="0" max="59" placeholder="MM" required>
-          </label>
-        </div>
-        <button class="btn btn-outline" type="submit">Convert to old date</button>
-      </form>
-    </div>
-
-    <output class="calculator-result" id="calculator-result" aria-live="polite">Enter a date to begin.</output>
-    <p class="calculator-note">Each month has 28 days. In leap years, September 14 and September 15 each run for 36 hours. Gammer is month 13.</p>
-  </div>
-</section>
-
-<!-- ========================== OFFICIAL HOLIDAYS ======================== -->
-<section class="official-holidays">
-  <div class="container">
-    <div class="holidays-heading">
-      <div>
-        <span class="eyebrow">Calendar Notice</span>
-        <h2>OFFICIAL HOLIDAYS</h2>
-      </div>
-      <p>Recognized dates for Noobtech personnel, shown in both calendar systems.</p>
-    </div>
-    <div class="holiday-list" id="holiday-list"></div>
-  </div>
-</section>
 
 <!-- ============================== HERO =============================== -->
 <section class="hero">
@@ -240,6 +173,7 @@
         <a href="index.html">Home</a>
         <a href="info.html">Info</a>
         <a href="careers.html">Careers</a>
+        <a href="calendar.html">Calendar</a>
       </div>
       <div class="footer-col">
         <h4>Elsewhere</h4>
